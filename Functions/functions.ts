@@ -55,7 +55,6 @@ colors.map((color) => {
 
 // TS can infer this type fairly well, but sometimes it may want you to annotate a function with a void return explicitly.
 
-// Void
 function printTwice(msg: string): void {
   console.log(msg);
   console.log(msg);
@@ -63,7 +62,12 @@ function printTwice(msg: string): void {
 
 // ---------------------------------
 
-// Never
+// !! Never !!
+
+// The never type represents values that NEVER occur. We might use it to annotate a function that always throws an exception, or a function that never finishes executing.
+
+// Don't confuse with 'void' - void returns undefined or null, which is technically still a type of value. With 'never', a function doesn't even finish executing.
+
 function makeError(msg: string): never {
   throw new Error(msg);
 }
