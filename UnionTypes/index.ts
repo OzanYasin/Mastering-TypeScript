@@ -19,4 +19,31 @@ type Loc = {
 };
 
 let coordinates: Point | Loc = { x: 1, y: 34 };
-coordinates = { lat: 312.354, llong: 23.321 };
+coordinates = { lat: 312.354, long: 23.321 };
+
+// Type Narrowing w/ Union Types
+
+function printAge(age: number | string): void {
+  console.log(`You are ${age} years old`);
+}
+printAge(23);
+printAge('24');
+
+function calculateTax(price: number | string, tax: number) {
+  // price could be number or string
+  if (typeof price === 'string') {
+    price = parseFloat(price.replace('$', ''));
+  }
+  return price * tax;
+}
+
+console.log(calculateTax(45, 0.07)); // 3.15
+console.log(calculateTax('$45', 0.7)); // 3.15
+
+// Unions - Narrowing the Type
+
+// Narrowing the Type is simply doing a type check before working with a value. If your value is a string you may want to use it differently than if you got a number.
+
+// Since unions allow multiple types for a value, it's good to check what came through before working with it.
+
+// * TS is smart enough to know what we're working with.
