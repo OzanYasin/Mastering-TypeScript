@@ -21,7 +21,9 @@ type Loc = {
 let coordinates: Point | Loc = { x: 1, y: 34 };
 coordinates = { lat: 312.354, long: 23.321 };
 
-// Type Narrowing w/ Union Types
+// -------------------------------------
+
+// !! Type Narrowing w/ Union Types !!
 
 function printAge(age: number | string): void {
   console.log(`You are ${age} years old`);
@@ -40,6 +42,8 @@ function calculateTax(price: number | string, tax: number) {
 console.log(calculateTax(45, 0.07)); // 3.15
 console.log(calculateTax('$45', 0.7)); // 3.15
 
+// -------------------------------------
+
 // Unions - Narrowing the Type
 
 // Narrowing the Type is simply doing a type check before working with a value. If your value is a string you may want to use it differently than if you got a number.
@@ -54,3 +58,22 @@ const stuff: (number | string)[] = [1, 2, 3, 'das']; // Ok
 const coords: (Point | Loc)[] = [];
 coords.push({ lat: 312.123, long: 23.312 });
 coords.push({ x: 212, y: 12 });
+
+// -------------------------------------
+
+// !! Literal Types !!
+
+// Literal types are not just types - but the values themselves too!
+
+// On it's own, that's not super helpful. But combine  it with something like unions and you can have very fine-tuned type options for TS to enforce.
+
+type DayOfWeek =
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday'
+  | 'Sunday';
+
+let today: DayOfWeek = 'Monday'; // It has to be equal to one of these values.
