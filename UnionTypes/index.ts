@@ -47,3 +47,10 @@ console.log(calculateTax('$45', 0.7)); // 3.15
 // Since unions allow multiple types for a value, it's good to check what came through before working with it.
 
 // * TS is smart enough to know what we're working with.
+
+const stuff: (number | string)[] = [1, 2, 3, 'das']; // Ok
+// const stuff: number[] | string[] = [1, 2, 3, 'asd']; // Error
+
+const coords: (Point | Loc)[] = [];
+coords.push({ lat: 312.123, long: 23.312 });
+coords.push({ x: 212, y: 12 });
