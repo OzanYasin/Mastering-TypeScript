@@ -151,3 +151,41 @@ const chewy: ServiceDog = {
 // We are not limited to a single inheritance model where service dog can only extend dog.
 
 // If I had another interface, I can extend from multiple.
+
+interface Person4 {
+  name: string;
+}
+
+interface Employee {
+  readonly id: number;
+  email: string;
+}
+
+interface Engineer extends Person4, Employee {
+  level: string;
+  languages: string[];
+}
+
+const pierre: Engineer = {
+  name: 'Pierre',
+  id: 12312,
+  email: 'pierre@gmail.com',
+  level: 'senior',
+  languages: ['JS', 'Python'],
+};
+
+// ----------------------------------
+
+// !! Interfaces VS Type Alias !!
+
+// 1 - Interfaces can only describe the shape of an object.
+
+type Color = 'red' | 'blue';
+
+// Can not do that with interfaces, due to it's not a object type.
+
+// 2 - With interfaces, we can reopen them and add on right after they've already been created.
+
+// And when it comes to extending properties or inheriting from another interface, we can use the extend keyword.
+
+// END
