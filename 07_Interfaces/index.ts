@@ -88,3 +88,66 @@ const shoes: Product = {
 // ----------------------------------
 
 // !! Reopening Interfaces !!
+
+// Another thing we can do with interfaces is reopen and add new properties to interfaces after we've already described an interface.
+// * Unlike types alias.
+
+interface Person3 {
+  name: string;
+}
+
+interface Person3 {
+  age: number;
+}
+
+//Perfectly okay - Person has name & age
+
+const person: Person3 = {
+  name: 'Jerry',
+  age: 42,
+};
+
+// * Can not reopen types just like interfaces.
+
+// ----------------------------------
+
+// !! Extending Interfaces !!
+
+// So another thing we can do with interfaces that's really nice is extend an interface or essentially inherit from another interface similar to the way with object oriented programming.
+
+// I can have a class that will inherit functionality  from a parent class.
+
+interface Dog {
+  name: string;
+  age: number;
+}
+
+interface Dog {
+  breed: string;
+  bark(): string;
+}
+
+// ** So instead of recreating all if this stuff from scratch, I can just add on the extended keyword and then whatever interface I want to extend or inherit types from.
+
+interface ServiceDog extends Dog {
+  // ServiceDog already is going to have name, age, breed and bark as required.
+  job: 'drug sniffer' | 'bomb' | 'guide dog';
+}
+
+const chewy: ServiceDog = {
+  name: 'Chewy',
+  age: 4,
+  breed: 'Lab',
+  bark() {
+    return 'Bark!';
+  },
+  job: 'guide dog', // It has to be spelled correctly.
+};
+
+// ----------------------------------
+
+// !! Interface Multiple Inheritance !!
+
+// We are not limited to a single inheritance model where service dog can only extend dog.
+
+// If I had another interface, I can extend from multiple.
