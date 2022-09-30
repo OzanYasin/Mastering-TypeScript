@@ -42,13 +42,35 @@ const input = document.getElementById('todoInput')! as HTMLInputElement;
 
 // We need to use a type assertion there to tell TypeScript that this is an HTML Input Element, not just a generic element.
 
-btn.addEventListener('click', () => {
-  console.log(input.value);
-  input.value = '';
-});
+// btn.addEventListener('click', () => {
+//   console.log(input.value);
+//   input.value = '';
+// });
 
 // * Alternative way of Type Assertion
 
 // (<HTMLInputElement>input).value;
 
 // *** It's less common in general but does not work with JSX.
+
+// ----------------------------
+
+// !!! PROJECT SECTION !!!
+
+const form = document.querySelector('form')!;
+const ul = document.querySelector('#todoList')!;
+
+function handleSubmit(e: SubmitEvent) {
+  e.preventDefault();
+  const newTodoText = input.value;
+  const newLi = document.createElement('li');
+  // Checkbox
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  newLi.append(newTodoText);
+  newLi.append(checkbox);
+  ul.append(newLi);
+  input.value = '';
+}
+
+form.addEventListener('submit', handleSubmit);

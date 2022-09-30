@@ -22,10 +22,27 @@ var numChars = mystery.length;
 // Let's talk about real world example of "Type Assertions"
 var input = document.getElementById('todoInput');
 // We need to use a type assertion there to tell TypeScript that this is an HTML Input Element, not just a generic element.
-btn.addEventListener('click', function () {
-    console.log(input.value);
-    input.value = '';
-});
+// btn.addEventListener('click', () => {
+//   console.log(input.value);
+//   input.value = '';
+// });
 // * Alternative way of Type Assertion
 // (<HTMLInputElement>input).value;
 // *** It's less common in general but does not work with JSX.
+// ----------------------------
+// !!! PROJECT SECTION !!!
+var form = document.querySelector('form');
+var ul = document.querySelector('#todoList');
+function handleSubmit(e) {
+    e.preventDefault();
+    var newTodoText = input.value;
+    var newLi = document.createElement('li');
+    // Checkbox
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    newLi.append(newTodoText);
+    newLi.append(checkbox);
+    ul.append(newLi);
+    input.value = '';
+}
+form.addEventListener('submit', handleSubmit);
