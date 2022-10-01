@@ -33,14 +33,21 @@ var input = document.getElementById('todoInput');
 // !!! PROJECT SECTION !!!
 var form = document.querySelector('form');
 var ul = document.querySelector('#todoList');
+var todos = [];
 function handleSubmit(e) {
     e.preventDefault();
-    var newTodoText = input.value;
+    var newTodo = {
+        text: input.value,
+        completed: false,
+    };
+    createTodo(newTodo);
+    todos.push(newTodo);
+}
+function createTodo(todo) {
     var newLi = document.createElement('li');
-    // Checkbox
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    newLi.append(newTodoText);
+    newLi.append(todo.text);
     newLi.append(checkbox);
     ul.append(newLi);
     input.value = '';
