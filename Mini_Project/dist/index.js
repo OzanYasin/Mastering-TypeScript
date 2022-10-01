@@ -33,7 +33,15 @@ var input = document.getElementById('todoInput');
 // !!! PROJECT SECTION !!!
 var form = document.querySelector('form');
 var ul = document.querySelector('#todoList');
-var todos = [];
+// localStorage
+function readTodos() {
+    var todosJSON = localStorage.getItem('todos');
+    if (todosJSON === null)
+        return [];
+    return JSON.parse(todosJSON);
+}
+var todos = readTodos();
+todos.forEach(createTodo);
 function handleSubmit(e) {
     e.preventDefault();
     var newTodo = {
@@ -50,6 +58,7 @@ function createTodo(todo) {
     newLi.append(todo.text);
     newLi.append(checkbox);
     ul.append(newLi);
+    localStorage.setItem('todos', JSON.stringify(todos));
     input.value = '';
 }
 form.addEventListener('submit', handleSubmit);
