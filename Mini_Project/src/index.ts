@@ -72,6 +72,10 @@ function readTodos(): Todo[] {
   return JSON.parse(todosJSON);
 }
 
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 const todos: Todo[] = readTodos();
 todos.forEach(createTodo);
 
@@ -83,18 +87,25 @@ function handleSubmit(e: SubmitEvent) {
   };
   createTodo(newTodo);
   todos.push(newTodo);
+
+  saveTodos();
+  input.value = '';
 }
 
 function createTodo(todo: Todo) {
   const newLi = document.createElement('li');
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
+  checkbox.checked = todo.completed;
+
+  checkbox.addEventListener('change', function () {
+    todo.completed = checkbox.checked;
+    saveTodos();
+  });
+
   newLi.append(todo.text);
   newLi.append(checkbox);
   ul.append(newLi);
-
-  localStorage.setItem('todos', JSON.stringify(todos));
-  input.value = '';
 }
 
 form.addEventListener('submit', handleSubmit);
