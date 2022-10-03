@@ -22,9 +22,35 @@ class Player {
         this._score = newScore;
     }
 }
+class SuperPlayer extends Player {
+    constructor() {
+        super(...arguments);
+        this.isAdmin = true;
+    }
+    maxScore() {
+        this._score = 999;
+    }
+}
+class Jacket {
+    constructor(brand, color) {
+        this.brand = brand;
+        this.color = color;
+    }
+    print() {
+        console.log(`${this.color} ${this.brand} Jacket`);
+    }
+}
+class Bike {
+    constructor(color) {
+        this.color = color;
+    }
+}
+const bike1 = new Bike('red');
+const jacket1 = new Jacket('Prada', 'Black');
 const elton = new Player('Elton', 'Steele');
 // elton.fullName = 'Something Else' // It's readonly on default. So, it throws Error
 elton.score = 33;
 // readonly -> Does not allow to change the property or method
-// public -> It makes clear that property or method is reachable from outside.
-// private -> It makes property or method is only accessible or usable inside the class.
+// public -> Available anywhere
+// private -> Only available in the exact class you define it
+// protected -> Available in the class you defined on & any classes that inherit from that class
