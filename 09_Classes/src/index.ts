@@ -62,3 +62,46 @@ elton.score = 33;
 // public -> Available anywhere
 // private -> Only available in the exact class you define it
 // protected -> Available in the class you defined on & any classes that inherit from that class
+
+// Abstract Class -> We define a pattern, methods that must be implemented by a child class. It needs to exist in any class that extends that they inherit.
+
+abstract class Employee {
+  public first: string;
+  public last: string;
+  constructor(first: string, last: string) {
+    this.first = first;
+    this.last = last;
+  }
+  abstract getPay(): number;
+}
+
+class FullTimeEmployee extends Employee {
+  constructor(first: string, last: string, private salary: number) {
+    super(first, last);
+  }
+  getPay() {
+    return this.salary;
+  }
+}
+
+class PartTimeEmployee extends Employee {
+  constructor(
+    first: string,
+    last: string,
+    private hourlyRate: number,
+    private hoursWorked: number
+  ) {
+    super(first, last);
+  }
+  getPay(): number {
+    return this.hourlyRate * this.hoursWorked;
+  }
+}
+
+const betty = new FullTimeEmployee('Betty', 'White', 95000);
+console.log(betty.getPay());
+
+const billy = new PartTimeEmployee('Billy', 'Billerson', 24, 1100);
+console.log(billy.getPay());
+
+// END
