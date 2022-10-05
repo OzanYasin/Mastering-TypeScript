@@ -97,4 +97,27 @@ function makeNoise(animal) {
         animal;
         return 'Meow';
     }
+    else {
+        animal;
+    }
 }
+function getFarmAnimalSound(animal) {
+    switch (animal.kind) {
+        case 'pig':
+            // animal
+            return 'Oink!';
+        case 'cow':
+            // animal
+            return 'Moooo!';
+        case 'rooster':
+            // animal
+            return 'Cockadoodledoo!';
+    }
+}
+const stevie = {
+    name: 'Stevie Chicks',
+    weight: 2,
+    age: 1.5,
+    kind: 'rooster',
+};
+// console.log(getFarmAnimalSound(stevie));

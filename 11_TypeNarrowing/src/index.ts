@@ -155,5 +155,99 @@ function makeNoise(animal: Dog | Cat) {
   if (isCat(animal)) {
     animal;
     return 'Meow';
+  } else {
+    animal;
   }
 }
+
+// --------------------------
+
+// !! discriminated unions !!
+
+// A common pattern in TypeScript involves creating a literal property that is common across multiple types.
+
+// We can then narrow the type using that literal property.
+
+interface Rooster {
+  name: string;
+  weight: number;
+  age: number;
+  kind: 'rooster';
+}
+
+interface Cow {
+  name: string;
+  weight: number;
+  age: number;
+  kind: 'cow';
+}
+
+interface Pig {
+  name: string;
+  weight: number;
+  age: number;
+  kind: 'pig';
+  isAlive: boolean;
+}
+
+// So the concept of a discriminated union is that we add something called a discriminant, which is just a fancy name for a property that all our types will have in common.
+
+type FarmAnimal = Rooster | Cow | Pig | Sheep;
+
+function getFarmAnimalSound(animal: FarmAnimal) {
+  switch (animal.kind) {
+    case 'pig':
+      // animal
+      return 'Oink!';
+    case 'cow':
+      // animal
+      return 'Moooo!';
+    case 'rooster':
+      // animal
+      return 'Cockadoodledoo!';
+  }
+}
+
+const stevie: Rooster = {
+  name: 'Stevie Chicks',
+  weight: 2,
+  age: 1.5,
+  kind: 'rooster',
+};
+
+// console.log(getFarmAnimalSound(stevie));
+
+// --------------------------
+
+// !! Never (Exhaustiveness) Checking !!
+
+interface Sheep {
+  name: string;
+  weight: number;
+  age: number;
+  kind: 'sheep';
+}
+
+function getFarmAnimalSound2(animal: FarmAnimal) {
+  switch (animal.kind) {
+    case 'pig':
+      // animal
+      return 'Oink!';
+    case 'cow':
+      // animal
+      return 'Moooo!';
+    case 'rooster':
+      // animal
+      return 'Cockadoodledoo!';
+    case 'sheep':
+      // animal
+      return 'Baaa';
+    default:
+      // We should never make it here, if we handled all cases correctly
+      const _exhaustiveCheck: never = animal;
+      return _exhaustiveCheck;
+    // By doing that, we'll know if we need to implement another case in here if we get an error because of this exhaustive check.
+  }
+}
+
+// END
