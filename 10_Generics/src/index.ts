@@ -123,3 +123,31 @@ function makeEmptyArray<T = number>(): T[] {
 
 const numsArray = makeEmptyArray(); // Default on number
 const strgins = makeEmptyArray<string>(); // Changed to array of numbers
+
+// -------------------------------
+
+// !! Writing Generic Classes !!
+
+interface Song {
+  title: string;
+  artist: string;
+}
+
+interface Video {
+  title: string;
+  creator: string;
+  resolution: string;
+}
+
+class Playlist<T> {
+  public queue: T[] = [];
+  add(element: T) {
+    this.queue.push(element);
+  }
+}
+
+const songs = new Playlist<Song>();
+
+const videos = new Playlist<Video>();
+
+// END
