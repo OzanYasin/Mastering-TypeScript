@@ -81,8 +81,12 @@ getRandomElement([123, 23, 11, 44]);
 
 // We can also write generic functions that have more than one type parameter.
 
-function merge<T, U>(object1: T, object2: U): T & U {
+function merge<T extends object, U extends object>(
+  object1: T,
+  object2: U
+): T & U {
   // If you have a second type parameter you would go with the new letter in the alphabet
+  // T and U has to be object due to 'extends'
   return {
     ...object1,
     ...object2,
@@ -90,3 +94,22 @@ function merge<T, U>(object1: T, object2: U): T & U {
 }
 
 const comboObj = merge({ name: 'colt' }, { pets: ['blue', 'elton'] });
+
+// --------
+
+interface Lengthy {
+  length: number;
+}
+
+//Generic
+function printDoubleLength<T extends Lengthy>(thing: T): number {
+  return thing.length * 2;
+}
+
+//Without Generic
+function printTripleLength(thing: Lengthy): number {
+  return thing.length * 3;
+}
+
+printDoubleLength('asd');
+// printDoubleLength(24);
