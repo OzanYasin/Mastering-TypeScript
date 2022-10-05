@@ -113,3 +113,13 @@ function printTripleLength(thing: Lengthy): number {
 
 printDoubleLength('asd');
 // printDoubleLength(24);
+
+// --------
+
+function makeEmptyArray<T = number>(): T[] {
+  // Default value of the T assigned to number
+  return [];
+}
+
+const numsArray = makeEmptyArray(); // Default on number
+const strgins = makeEmptyArray<string>(); // Changed to array of numbers
