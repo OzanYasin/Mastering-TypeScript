@@ -94,4 +94,66 @@ getRunTime({ title: 'Spongebob', numEpisodes: 80, episodeDuration: 30 });
 
 // --------------------------
 
-// !! Instance of Narrowing !!
+// !! instanceof Narrowing !!
+
+// instanceof is a Javascript operator that allow us to check if one thing is an instance of another (remember prototype? :))
+
+// This can help us narrow types when working with things like classes
+
+function printFullDate(date: string | Date) {
+  if (date instanceof Date) {
+    console.log(date.toUTCString());
+  } else {
+    console.log(new Date().toUTCString());
+  }
+}
+
+class User {
+  public username: string;
+  constructor(username: string) {
+    this.username = username;
+  }
+}
+
+class Company {
+  constructor(public name: string) {}
+}
+
+// It's a better option to use instanceof instead of in keyword to work with classes.
+
+function printName(entity: User | Company) {
+  if (entity instanceof User) {
+    entity;
+  } else {
+    entity;
+  }
+}
+
+// --------------------------
+
+// !! Type Predicates !!
+
+// TypeScript allows us to write custom functions that can narrow the type of a value. These functions have a very special return type called a type predicate.
+
+// A predicate takes the form parameterName is Type
+
+interface Cat {
+  name: string;
+  numLives: number;
+}
+
+interface Dog {
+  name: string;
+  breed: string;
+}
+
+function isCat(animal: Dog | Cat): animal is Cat {
+  return (animal as Cat).numLives !== undefined;
+}
+
+function makeNoise(animal: Dog | Cat) {
+  if (isCat(animal)) {
+    animal;
+    return 'Meow';
+  }
+}

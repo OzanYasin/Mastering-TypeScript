@@ -59,4 +59,42 @@ function getRunTime(media) {
 getRunTime({ title: 'Amadeus', duration: 140 });
 getRunTime({ title: 'Spongebob', numEpisodes: 80, episodeDuration: 30 });
 // --------------------------
-// !! Instance of Narrowing !!
+// !! instanceof Narrowing !!
+// instanceof is a Javascript operator that allow us to check if one thing is an instance of another (remember prototype? :))
+// This can help us narrow types when working with things like classes
+function printFullDate(date) {
+    if (date instanceof Date) {
+        console.log(date.toUTCString());
+    }
+    else {
+        console.log(new Date().toUTCString());
+    }
+}
+class User {
+    constructor(username) {
+        this.username = username;
+    }
+}
+class Company {
+    constructor(name) {
+        this.name = name;
+    }
+}
+// It's a better option to use instanceof instead of in keyword to work with classes.
+function printName(entity) {
+    if (entity instanceof User) {
+        entity;
+    }
+    else {
+        entity;
+    }
+}
+function isCat(animal) {
+    return animal.numLives !== undefined;
+}
+function makeNoise(animal) {
+    if (isCat(animal)) {
+        animal;
+        return 'Meow';
+    }
+}
