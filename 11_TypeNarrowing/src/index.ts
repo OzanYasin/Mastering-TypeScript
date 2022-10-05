@@ -21,3 +21,77 @@ function triple2(value: number | string) {
 // --------------------------
 
 // !! Truthiness Guards !!
+
+// Truthiness Type Guards involve checking a value for being truthy or falsy before working with it.
+
+// This is helpful in avoiding errors when values might be null or undefined.
+
+const el = document.getElementById('idk');
+if (el) {
+  // TS knows el has to be HTML Element
+  el;
+} else {
+  // TS knows el has to be null
+  el;
+}
+
+//Another Example
+const printLetters = (word?: string) => {
+  if (word) {
+    for (let char of word) {
+      console.log(char);
+    }
+  } else {
+    console.log('YOU DID NOT PASS IN A WORD!');
+  }
+};
+
+// --------------------------
+
+// !! Equality Narrowing !!
+
+// equality Type Guards involve comparing types to each other before doing certain operations with values.
+
+// By checking two values against one another, we can be sure they're both the same before working with them in a type-specific way.
+
+function someDemo(x: string | number, y: string | boolean) {
+  if (x === y) {
+    // Do not use double equals (==) in that case. Always use triple equals (===)
+    return [x, y];
+  }
+}
+
+// --------------------------
+
+// !! in Operator Narrowing !!
+
+// JavaScript's  in operator helps check if a certain property exist in an object.
+
+// This means we can use it to check if a value exist in an object, according to its type alias or aliases, before working with it.
+
+interface Movie {
+  title: string;
+  duration: number;
+}
+
+interface TVShow {
+  title: string;
+  numEpisodes: number;
+  episodeDuration: number;
+}
+
+function getRunTime(media: Movie | TVShow) {
+  if ('episodeDuration' in media) {
+    // TS knows it has to be TVShow type
+    return media.episodeDuration * media.numEpisodes;
+  }
+  // TS knows else is Movie type
+  return media.duration;
+}
+
+getRunTime({ title: 'Amadeus', duration: 140 });
+getRunTime({ title: 'Spongebob', numEpisodes: 80, episodeDuration: 30 });
+
+// --------------------------
+
+// !! Instance of Narrowing !!
