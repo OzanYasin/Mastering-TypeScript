@@ -1,5 +1,5 @@
 # Mastering-TypeScript
-Mastering TypeScript (2022) Udemy Course by **Colt Steele**.
+Mastering TypeScript (2022) Course by **Colt Steele**.
 
 ## Topics
 - The ins and outs of ALL of TypeScript's syntax.
